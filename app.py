@@ -7,7 +7,7 @@ app = Flask(__name__)
 class GetLoginId:
     def __init__(self):
         pass
-
+    userdata = 'userdata.json'
     def get_login_id_api(self):
         parsed_data = None
         url = "https://operatorportal.dev.mr.tv3cloud.com/apiproxy/Subscriber/users"
@@ -18,12 +18,15 @@ class GetLoginId:
             "Accept": "application/json, text/javascript, */*; q=0.01",
             "Cookie": auth_token
         }
-        
-        # Prepare the request body
-        body = {
-            "id": "9f60ce36b29666aiok8a3mvag000000003",
-            "accountid": "twohundredk.purch192831@outlook.com"
-        }
+        # Open the JSON file for reading
+        with open("C:\\operatorportaapi\\templates\\data.json", "r") as file:
+            # Load the JSON data into a Python dictionary
+            body = json.load(file)
+        # # Prepare the request body
+        # body = {
+        #     "id": "9f60ce36b29666aiok8a3mvag000000003",
+        #     "accountid": "twohundredk.purch192831@outlook.com"
+        # }
 
         try:
             # Make the POST request
