@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 80px;
+            padding: 50px;
+            width: 40%;
+            border: 5px solid black;
+            border-radius: 8px;
+        }
+ 
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+ 
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+ 
+        input[type="text"] {
+            width: 52%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+ 
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 25%;
+            font-size: 16px;
+        }
+ 
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>OperatorPortal Services</h1>
+    <label htmlFor="ID"><b>ID</b></label>
+    <br></br>
+    <input type="text" id="userId">
+    <br></br>
+    <label htmlFor="AccountID"><b>AccountID</b></label>
+    <br></br>
+    <input type="text" id="accountId">
+    <br></br>
+    <button onclick="executeRequest()">Update Login</button>
+    <script>
+        function executeRequest() {
+            var userId = document.getElementById("userId").value;
+            var accountId = document.getElementById("accountId").value;
+            fetch(`/execute?id=${userId}&accountid=${accountId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    // Show a friendly alert message
+                    alert('Login updated successfully!');
+                })
+                .catch(error => console.error('Fetch Error:', error));
+        }
+    </script>
+</body>
+</html>
